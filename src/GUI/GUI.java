@@ -30,6 +30,7 @@ public class GUI extends JFrame implements ActionListener{
     JButton speakBtn = new JButton();
     JButton recentBtn = new JButton();
     JButton ggTranslate = new JButton();
+    JButton gameBtn = new JButton();
 
     // ListSuggest
     static JList<Object> listSuggest = new JList<>();
@@ -107,6 +108,7 @@ public class GUI extends JFrame implements ActionListener{
         this.btnPanel.add(removeBtn);
         this.btnPanel.add(modifyBtn);
         this.btnPanel.add(recentBtn);
+        this.btnPanel.add(gameBtn);
         this.btnPanel.setLayout(null);
 
         Icon menuIcon = new ImageIcon("Resources/Icon/icons8-menu-24.png");
@@ -151,6 +153,7 @@ public class GUI extends JFrame implements ActionListener{
         Icon searchIcon = new ImageIcon("Resources/Icon/icons8-search-64.png");
         Icon recentIcon = new ImageIcon("Resources/Icon/recent.png");
         Icon ggTranslateIcon = new ImageIcon("Resources/Icon/gg.png");
+        Icon gameIcon = new ImageIcon("Resources/Icon/gameIcon.png");
 
         Color background1 = new Color(41, 162, 162);
         this.searchBtn.setBounds(50, 50, 130, 40);
@@ -185,6 +188,12 @@ public class GUI extends JFrame implements ActionListener{
         this.addBtn.setBackground(background1);
         this.addBtn.addActionListener(this.addBtnListener);
 
+        this.gameBtn.setBounds(340, 50, 40, 40);
+        this.gameBtn.setBorderPainted(false);
+        this.gameBtn.setIcon(gameIcon);
+        this.gameBtn.setBackground(background1);
+        this.gameBtn.addActionListener(this.gameBtnListener);
+
         this.ggTranslate.setBounds(355, 580, 45, 45); //355 102
         this.ggTranslate.setBorderPainted(false);
         this.ggTranslate.setIcon(ggTranslateIcon);
@@ -208,8 +217,8 @@ public class GUI extends JFrame implements ActionListener{
         Color backgroundBorder1 = new Color(255,255,255);
         this.wordTf1.setBounds(1,1,350,250);
         this.wordTf1.setFont(new Font("Times New Roman", Font.PLAIN,22));
-        this.wordTf1.setWrapStyleWord(true); // Đảm bảo các từ không bị tràn ra khỏi đường bao
-        this.wordTf1.setLineWrap(true); // Đảm bảo các dòng không bị tràn ra khỏi đường bao
+        this.wordTf1.setWrapStyleWord(true);
+        this.wordTf1.setLineWrap(true);
         this.textFieldPanel1.setBackground(backgroundBorder);
         this.textFieldPanel1.setLayout(null);
         this.textFieldPanel1.setBounds(400,460,350-1,250-1);
@@ -344,6 +353,13 @@ public class GUI extends JFrame implements ActionListener{
             String s = GoogleAPI.translate(wordTf1.getText().trim());
             textWordExplain2.setText(s);
         }
+    };
+
+    /**
+     * Game
+     */
+    ActionListener gameBtnListener = game -> {
+        Game newGame = new Game("game");
     };
 
     /**

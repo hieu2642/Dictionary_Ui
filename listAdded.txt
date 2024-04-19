@@ -1,3 +1,6 @@
+@gate
+cổng
+
 @enter
 chon
 
