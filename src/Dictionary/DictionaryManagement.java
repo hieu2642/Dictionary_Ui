@@ -32,7 +32,7 @@ public class DictionaryManagement {
             System.out.println("Add word-number(" + (i + 1) + ")'s explain. Double enter to finish!");
             s = Validation.inputString();
             word.setExplain(s);
-            listAdded.add(0, word);
+            listAdded.addFirst(word);
         }
     }
 
@@ -49,18 +49,21 @@ public class DictionaryManagement {
             while (sc.hasNextLine()) {
                 String s = sc.nextLine();
                 Word word = new Word();
-                if (s.contains("#")) {
-                    word.setTarget(s.substring(1, s.indexOf("#")));
-                    word.setPronunciation(s.substring(s.indexOf("#") + 1));
-                } else if (s.contains("/")) {
-                    word.setTarget(s.substring(1, s.indexOf("/")));
-                    word.setPronunciation(s.substring(s.indexOf("/")));
-                } else {
-                    word.setTarget(s.substring(1));
+                // Thêm điều kiện kiểm tra độ dài của chuỗi s
+                if (s.length() > 1) {
+                    if (s.contains("#")) {
+                        word.setTarget(s.substring(1, s.indexOf("#")));
+                        word.setPronunciation(s.substring(s.indexOf("#") + 1));
+                    } else if (s.contains("/")) {
+                        word.setTarget(s.substring(1, s.indexOf("/")));
+                        word.setPronunciation(s.substring(s.indexOf("/")));
+                    } else {
+                        word.setTarget(s.substring(1));
+                    }
                 }
                 String add = sc.nextLine();
                 s = "";
-                while (!add.equals("")) {
+                while (!add.isEmpty()) {
                     s = s.concat(add + "\n");
                     if (sc.hasNextLine()) {
                         add = sc.nextLine();
@@ -108,7 +111,7 @@ public class DictionaryManagement {
         notification = "";
         String s = "";
         Word word;
-        if (target.equals("")) {
+        if (target.isEmpty()) {
             notification = "Enter a word!";
             return null;
         }
@@ -117,26 +120,26 @@ public class DictionaryManagement {
         }
         if ((Lookup(target, listDeleted)) != null) {
             notification = " This is a deleted word\n";
-            if (!s.equals("")) {
+            if (!s.isEmpty()) {
                 notification += "* Explain in your Add-word list:\n";
                 return new Word(target, null, s);
             }
             return null;
         } else if ((word = Lookup(target, listModified)) != null) {
-            if (s.equals("")) {
+            if (s.isEmpty()) {
                 return word;
             } else {
                 return new Word(target, null, "* Explain in your Add-word list:\n"
                         + s + "\n\n***************\n\n" + word.getExplain());
             }
         } else if ((word = Lookup(target, listWord)) != null) {
-            if (s.equals("")) {
+            if (s.isEmpty()) {
                 return word;
             } else {
                 return new Word(target, null, "* Explain in your Add-word list:\n"
                         + s + "\n\n***************\n\n" + word.getExplain());
             }
-        } else if (! s.equals("")) {
+        } else if (!s.isEmpty()) {
             return new Word(target, null, "* Explain in your Add-word list:\n" + s);
         }
         notification = " There is no data\n";
@@ -153,7 +156,7 @@ public class DictionaryManagement {
         notification = "";
         ArrayList<String> listSuggestion = new ArrayList<>();
         target = target.trim();
-        if (target.equals("")) {
+        if (target.isEmpty()) {
             notification = " Enter a word!\n";
             for (Word word : listRecentWord) {
                 listSuggestion.add(word.getTarget());
@@ -205,7 +208,7 @@ public class DictionaryManagement {
         } else {
             word = Lookup(target.trim(), listWord);
             if (word != null) {
-                listModified.add(0, new Word(target.trim(), null, explain.trim()));
+                listModified.addFirst(new Word(target.trim(), null, explain.trim()));
                 updateDataOfList(listModified, fileListModified);
                 notification = " The word's explain has been modified!\n";
             } else {
@@ -233,7 +236,7 @@ public class DictionaryManagement {
             updateDataOfList(listDeleted, fileListDeleted);
             notification = " The word has been removed from \"Modified-word\" list\n";
         } else if ((word = Lookup(target.trim(), listWord)) != null) {
-            listDeleted.add(0, word);
+            listDeleted.addFirst(word);
             updateDataOfList(listDeleted, fileListDeleted);
             notification = " Word has been deleted\n";
         } else {
@@ -256,11 +259,11 @@ public class DictionaryManagement {
             System.out.println(" Overwritten explain for \"" + target.trim() + "\" !");
             word.setExplain(explain.trim());
             listAdded.remove(word);
-            listAdded.add(0,word);
+            listAdded.addFirst(word);
             updateDataOfList(listAdded, fileListAdded);
             notification = " The word's explain has been overwritten!\n";
         } else {
-            listAdded.add(0, new Word(target.trim(), null, explain.trim()));
+            listAdded.addFirst(new Word(target.trim(), null, explain.trim()));
             updateDataOfList(listAdded, fileListAdded);
             notification = " The word has been added to Added-word list!\n";
         }
