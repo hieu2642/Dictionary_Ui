@@ -1,4 +1,4 @@
-# My Dictionaty By Group 1-11
+# My Dictionaty By Group 1-19
 
 ## Tên các thành viên:
 
