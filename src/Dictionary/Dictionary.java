@@ -39,32 +39,32 @@ public class Dictionary {
      * @param word Từ muốn thêm vào danh sách từ đã tra gần đây.
      */
     public static void addWordToListRecent(Word word) {
-        Word t;
-        if ((t = Lookup(word.getTarget(), listRecentWord)) != null) {
-            listRecentWord.remove(t);
-            listRecentWord.add(0, word);
-        } else {
-            int count = listRecentWord.size();
-            if (listRecentWord.size() > 30) {
-                listRecentWord.remove(count - 1);
-                listRecentWord.add(word);
-            } else {
-                listRecentWord.add(word);
+        // Check if the word already exists in the list
+        for (int i = 0; i < listRecentWord.size(); i++) {
+            if (listRecentWord.get(i).getTarget().equals(word.getTarget())) {
+                // If it exists, remove the old entry
+                listRecentWord.remove(i);
+                break;
             }
+        }
+        // Add the new word to the beginning of the list
+        listRecentWord.addFirst(word);
+        // If the list exceeds 30 words, remove the oldest entry
+        if (listRecentWord.size() > 30) {
+            listRecentWord.removeLast();
         }
     }
 
+
     public static String listRecentToString() {
-        if (listRecentWord.size() == 0) {
+        if (listRecentWord.isEmpty()) {
             return "Bạn chưa tra từ nào!";
         }
-        String s ="";
+        StringBuilder s = new StringBuilder();
         for (Word e: listRecentWord) {
-            s += e.getTarget() + "\n" + "-> " +
-                    e.getExplain().replaceAll("=", "    • ").replaceAll("\\+", ":")
-                    + "\n\n";
+            s.append(e.getTarget()).append("\n").append("-> ").append(e.getExplain().replaceAll("=", "    • ").replaceAll("\\+", ":")).append("\n\n");
         }
-        return s;
+        return s.toString();
     }
 
     /**
@@ -72,14 +72,14 @@ public class Dictionary {
      * @return .
      */
     public static String listModifiedToString() {
-        if (listModified.size() == 0) {
+        if (listModified.isEmpty()) {
             return "Chưa có từ đã sửa";
         }
-        String s ="";
+        StringBuilder s = new StringBuilder();
         for (Word e: listModified) {
-            s += e.getTarget() + "\n" + "-> " + e.getExplain() + "\n\n";
+            s.append(e.getTarget()).append("\n").append("-> ").append(e.getExplain()).append("\n\n");
         }
-        return s;
+        return s.toString();
     }
 
     /**
@@ -87,14 +87,14 @@ public class Dictionary {
      * @return .
      */
     public static String listDeletedToString() {
-        if (listDeleted.size() == 0) {
+        if (listDeleted.isEmpty()) {
             return "Bạn chưa xóa từ nào!";
         }
-        String s ="";
+        StringBuilder s = new StringBuilder();
         for (Word e: listDeleted) {
-            s += e.getTarget() + "\n" + "-> " + e.getExplain() + "\n\n";
+            s.append(e.getTarget()).append("\n").append("-> ").append(e.getExplain()).append("\n\n");
         }
-        return s;
+        return s.toString();
     }
 
     /**
@@ -102,14 +102,14 @@ public class Dictionary {
      * @return .
      */
     public static String listAddedToString() {
-        if (listAdded.size() == 0) {
+        if (listAdded.isEmpty()) {
             return "Bạn chưa thêm từ nào!";
         }
-        String s ="";
+        StringBuilder s = new StringBuilder();
         for (Word e: listAdded) {
-            s += e.getTarget() + "\n" + "-> " + e.getExplain() + "\n\n";
+            s.append(e.getTarget()).append("\n").append("-> ").append(e.getExplain()).append("\n\n");
         }
-        return s;
+        return s.toString();
     }
 
     /**
@@ -162,19 +162,18 @@ public class Dictionary {
         while (left <= right) {
             mid = (left + right) / 2;
             if (list.get(mid).getTarget().startsWith(target)) {
-                while (mid > 0) {
-                    mid = mid - 1;
-                    if (! list.get(mid).getTarget().startsWith(target)) {
-                        return mid + 1;
-                    }
+                // Find the first word that starts with the target
+                while (mid > 0 && list.get(mid - 1).getTarget().startsWith(target)) {
+                    mid--;
                 }
-                if (mid == 0) return 0;
+                return mid;
             } else if (list.get(mid).getTarget().compareTo(target) > 0) {
                 right = mid - 1;
-            } else if (list.get(mid).getTarget().compareTo(target) < 0) {
+            } else {
                 left = mid + 1;
             }
         }
-        return -1;
+        return -1; // Return -1 if the target is not found
     }
+
 }

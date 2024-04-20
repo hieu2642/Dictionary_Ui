@@ -15,8 +15,8 @@ public class Validation {
             do {
                 old = sc.nextLine().trim();
                 input = input.concat(old + "\n");
-            } while (!old.equals(""));
-            if (!input.equals("")) {
+            } while (!old.isEmpty());
+            if (!input.isEmpty()) {
                 return input.trim();
             }
         }
@@ -33,15 +33,16 @@ public class Validation {
             try {
                 int choice = Integer.parseInt(sc.nextLine().trim());
                 if (choice < min || choice > max) {
-                    System.out.println("Please enter a positive number!!!");
+                    System.out.println("Please enter a number between " + min + " and " + max + ".");
                     System.out.print("Enter again: ");
                 } else {
                     return choice;
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Please enter Integer");
+                System.out.println("Please enter an integer.");
                 System.out.print("Enter again: ");
             }
         }
     }
+
 }

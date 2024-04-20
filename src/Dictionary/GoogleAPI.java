@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 public class GoogleAPI {
 
@@ -17,7 +18,7 @@ public class GoogleAPI {
     public static String translate(String text) {
         try {
             String urlStr = "https://script.google.com/macros/s/AKfycbzzimSXyRhh4zy2rePQ-cTwisM1WdYZRVc1x1UVRj0-NCV2DHkprugTqvoOsh95APWy/exec" +
-                    "?q=" + URLEncoder.encode(text, "UTF-8") +
+                    "?q=" + URLEncoder.encode(text, StandardCharsets.UTF_8) +
                     "&target=" + "vi" +
                     "&source=" + "en";
             URL url = new URL(urlStr);
@@ -32,7 +33,9 @@ public class GoogleAPI {
             in.close();
             return response.toString();
         } catch (IOException e) {
-            return "";
+            e.printStackTrace(); // Print the stack trace for debugging
+            return "Translation error: " + e.getMessage();
         }
     }
+
 }

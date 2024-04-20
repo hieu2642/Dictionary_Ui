@@ -4,10 +4,11 @@ import java.sql.*;
 
 public class FindWord_fromDB {
     private Connection connection;
-    private String dbFile = "src/GUI/dict_hh.db";
+
     public FindWord_fromDB() {
         // Kết nối đến cơ sở dữ liệu SQLite
         try {
+            String dbFile = "src/GUI/dict_hh.db";
             connection = DriverManager.getConnection("jdbc:sqlite:" + dbFile);
         } catch (SQLException e) {
             e.printStackTrace();
