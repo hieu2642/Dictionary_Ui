@@ -8,13 +8,12 @@
 
 ## Demo
 
-![demo](https://gist.github.com/assets/102776233/5a8946b2-da56-4261-8705-bfdcfc381982)
-
+![Demo](https://github.com/hieu2642/Dictionary_Ui/assets/102776233/a9d7d7ef-ba21-468f-a24f-a5e34b080c81)
 ## Library
 
 [Soure Lib](https://sourceforge.net/projects/freetts/files/)
 
-![LIB](https://gist.github.com/assets/102776233/4dae15ad-eb7d-4c7c-9c67-dc3bd34202ef)
+![image](https://github.com/hieu2642/Dictionary_Ui/assets/102776233/53b4fa31-4e45-4792-bc83-f9ff141ceba6)
 
 ## Main features
 
@@ -50,8 +49,8 @@
    + Nếu từ không có trong dữ liệu, đưa ra thông báo.
 ```
 - Game
+![image](https://github.com/hieu2642/Dictionary_Ui/assets/102776233/7cd7d0a8-88b9-4dff-b974-89307b3e5c08)
 
-![demo](https://gist.github.com/assets/102776233/2d613c7a-c91b-4ae6-b641-47ca0ea20aab)
 ```sh
   Chơi game theo các nguyên tắc:
     + Nhấn Start để bắt đầu hiện gợi ý từ
