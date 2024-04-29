@@ -183,7 +183,7 @@ public class DictionaryManagement {
         if ((word = Lookup(target, listAdded)) != null) {
             listSuggestion.add(word.getTarget());
         }
-        listSuggestion.removeIf(str -> Lookup(str, listDeleted) != null);
+//        listSuggestion.removeIf(str -> Lookup(str, listDeleted) != null);
         return listSuggestion;
     }
 

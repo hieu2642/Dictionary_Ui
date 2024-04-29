@@ -1,3 +1,30 @@
+@g
+gd
+
+@blank
+chăn 1
+
+@fly
+bay
+
+@green
+xanh
+
+@a
+1
+
+@black
+màu đen
+
+@she
+cô ấy
+
+@dinner
+bữa tối
+
+@orange
+màu cam
+
 @gate
 cổng
 

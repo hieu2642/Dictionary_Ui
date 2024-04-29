@@ -466,7 +466,7 @@ public class GUI extends JFrame implements ActionListener{
             String s = word.getExplain().replaceAll("=", "    • ").replaceAll("\\+", ":");
             textWordExplain1.setText(DictionaryManagement.getNotification() + s);
             String oxfExample = Oxford.Example(wordTf.getText());
-            if (! oxfExample.equals("")) {
+            if (!oxfExample.equals("")) {
                 s += "\n\nVí dụ từ Oxford:\n" + oxfExample;
             }
             textWordExplain1.setText(s);
