@@ -67,3 +67,7 @@
 
 - Google Translate API: online translate [Soure API Translate](https://script.google.com/macros/s/AKfycbzzimSXyRhh4zy2rePQ-cTwisM1WdYZRVc1x1UVRj0-NCV2DHkprugTqvoOsh95APWy/exec)
 - Google Oxford API
+
+## Cây kế thừa 
+
+![package](https://github.com/hieu2642/Dictionary_Ui/assets/102776233/4efde6bf-090e-4225-98e2-601dc926ce29)
